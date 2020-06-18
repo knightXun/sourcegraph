@@ -429,19 +429,20 @@ type Mutation {
     #
     # The returned ChangesetSpec is immutable and expires after a certain period of time (if not
     # used in a call to applyCampaign), which can be queried on ChangesetSpec.expiresAt.
-    uploadChangesetSpec(
+    createChangesetSpec(
         # TODO(sqs): the raw changeset spec, as JSON or something?
         changesetSpec: String!
     ): ChangesetSpec!
 
-    # Create a campaign spec.
+    # Upload a campaign spec that will be used in a future update to a campaign (with
+    # applyCampaign).
     #
-    # The returned CampaignSpec is immutable and expires after a certain period of time (if not
-    # used in a call to applyCampaign), which can be queried on CampaignSpec.expiresAt.
+    # The returned CampaignSpec is immutable and expires after a certain period of time (if not used
+    # in a call to applyCampaign), which can be queried on CampaignSpec.expiresAt.
     createCampaignSpec(
         # The campaign spec as YAML (TODO also allow JSON for easier machine-creation or creation from JS web clients?).
         campaignSpec: String!
-        # Changeset specs that were locally computed and then uploaded using uploadChangesetSpec.
+        # Changeset specs that were locally computed and then uploaded using createChangesetSpec.
         changesetSpecs: [ID!]!
     ): CampaignSpec!
 
