@@ -449,8 +449,8 @@ type Mutation {
     # Compute the delta (difference) between a campaign's desired state (spec) and its actual state
     # (status).
     #
-    # NOTE: This actually belongs in Query (not Mutation), but I put it here for ease of review in
-    # this PR draft just because the other proposed APIs are here.
+    # TODO(sqs): There may be a query form of this that creates a CampaignDelta without persisting
+    # it, for when this just needs to be shown in the UI immediately.
     computeCampaignDelta(
         campaign: ID!
 
